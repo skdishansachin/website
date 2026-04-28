@@ -1,0 +1,26 @@
+baseURL = 'https://skdishansachin.com/'
+languageCode = 'en-us'
+title = 'Dishan Sachin'
+
+[permalinks]
+  posts = "/:year/:slug/"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    noClasses = true
+    style = "monokai"
+
+[params]
+  description = "Just trying to understand how things work."
+
+[taxonomies]
+  series = "series"
+  tags = "tags"
+
+[outputs]
+  home = ["html", "rss"]
+  section = ["html", "rss"]
+
