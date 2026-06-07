@@ -139,9 +139,26 @@ a:hover {
   text-decoration: none;
 }
 
+.header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.header__brand {
+  color: var(--color-header-text);
+  padding: var(--spacing-sm) var(--spacing-md);
+  text-decoration: none;
+}
+
+.header__brand:hover {
+  color: #ff3cbc;
+  text-decoration: none;
+}
+
 .nav {
   display: flex;
-  justify-content: flex-end;
   flex-wrap: wrap;
 }
 
