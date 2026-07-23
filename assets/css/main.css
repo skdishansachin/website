@@ -1,64 +1,16 @@
 @font-face {
-  font-family: "TeX Gyre Heros";
-  src: url('/fonts/texgyreheros-regular.woff') format('woff');
-  font-weight: normal;
+  font-family: "Geist";
+  src: url('/fonts/Geist[wght].woff2') format('woff2');
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "TeX Gyre Heros";
-  src: url('/fonts/texgyreheros-bold.woff') format('woff');
-  font-weight: bold;
+  font-family: "Geist Mono";
+  src: url('/fonts/GeistMono[wght].woff2') format('woff2');
+  font-weight: 100 900;
   font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "TeX Gyre Heros";
-  src: url('/fonts/texgyreheros-italic.woff') format('woff');
-  font-weight: normal;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "TeX Gyre Heros";
-  src: url('/fonts/texgyreheros-bolditalic.woff') format('woff');
-  font-weight: bold;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "JetBrains Mono";
-  src: url('/fonts/JetBrainsMono-Regular.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "JetBrains Mono";
-  src: url('/fonts/JetBrainsMono-Bold.woff2') format('woff2');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "JetBrains Mono";
-  src: url('/fonts/JetBrainsMono-Italic.woff2') format('woff2');
-  font-weight: normal;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "JetBrains Mono";
-  src: url('/fonts/JetBrainsMono-BoldItalic.woff2') format('woff2');
-  font-weight: bold;
-  font-style: italic;
   font-display: swap;
 }
 
@@ -75,8 +27,8 @@
   --color-code-text: #000000;
   --color-border: #dddddd;
   
-  --font-family-sans: "TeX Gyre Heros", sans-serif;
-  --font-family-mono: "JetBrains Mono", monospace;
+  --font-family-sans: "Geist", sans-serif;
+  --font-family-mono: "Geist Mono", monospace;
   
   --container-width: 800px;
   --spacing-sm: 8px;
@@ -235,8 +187,7 @@ a:hover {
 
 .series__title {
   font-size: 1.3rem;
-  font-weight: 400;
-  text-shadow: 0 0 0 currentColor;
+  font-weight: 500;
   line-height: 1.2;
 }
 
