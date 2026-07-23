@@ -30,13 +30,13 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 <!-- Preload critical fonts -->
-<link rel="preload" href="/fonts/texgyreheros-regular.woff" as="font" type="font/woff" crossorigin>
-<link rel="preload" href="/fonts/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/Geist%5Bwght%5D.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/GeistMono%5Bwght%5D.woff2" as="font" type="font/woff2" crossorigin>
 
 <!-- Styles -->
 {{ $main := resources.Get "css/main.css" }}
 {{ $md := resources.Get "css/markdown.css" }}
-{{ $style := slice $main $md | resources.Concat "css/styles.css" | fingerprint }}
+{{ $style := slice $main $md | resources.Concat "css/styles.css" | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
 
 <!-- RSS -->

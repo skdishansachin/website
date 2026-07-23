@@ -24,3 +24,6 @@ title = 'Dishan Sachin'
   home = ["html", "rss"]
   section = ["html", "rss"]
 
+[minify]
+  minifyOutput = true
+
