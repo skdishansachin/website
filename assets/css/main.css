@@ -90,7 +90,7 @@ a:hover {
 
 .nav__link {
   color: var(--color-header-text);
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: var(--spacing-sm) 12px;
   display: inline-block;
 }
 
@@ -110,6 +110,7 @@ a:hover {
   color: var(--color-header-text);
   padding: var(--spacing-sm) var(--spacing-md);
   text-decoration: none;
+  font-weight: 600;
 }
 
 .header__brand:hover {
