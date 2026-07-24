@@ -60,7 +60,7 @@ body {
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
   font-family: var(--font-family-sans);
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.6;
 }
 
@@ -250,7 +250,7 @@ code {
 
 @media (max-width: 600px) {
   body {
-    font-size: 16px;
+    font-size: 18px;
   }
   
   .posts-list__item {
