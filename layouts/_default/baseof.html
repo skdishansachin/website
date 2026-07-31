@@ -1,12 +1,99 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode }}">
-<head>
-    {{ partial "head.html" . }}
-</head>
-<body>
-    {{ partial "header.html" . }}
-    <main class="main-content">
+<html lang="{{ .Site.Language.Locale }}" data-theme="{{ .Site.Params.theme }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {{ if not .IsHome }}
+        {{ .Title }} -
+      {{ end }}
+      {{ .Site.Params.siteName }}
+    </title>
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+    <meta
+      name="color-scheme"
+      content="{{ if eq .Site.Params.theme "both" }}light dark{{ else }}{{ .Site.Params.theme }}{{ end }}"
+    >
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
+    <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+    <meta property="og:url" content="{{ .Permalink }}">
+    <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+    <meta property="og:site_name" content="{{ .Site.Title }}">
+    <meta property="og:locale" content="en_US">
+    {{ $defaultImage := "images/default-share.png" }}
+    {{ $image := .Params.image | default $defaultImage }}
+    <meta property="og:image" content="{{ $image | absURL }}">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
+    <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+    <meta name="twitter:image" content="{{ $image | absURL }}">
+
+    <link rel="canonical" href="{{ .Permalink }}">
+    <link rel="icon" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <link rel="preload" href="/fonts/et-book.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/et-book-italic.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/et-book-bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/et-book-num.woff2" as="font" type="font/woff2" crossorigin>
+
+    {{ $style := slice (resources.Get "css/style.css") (resources.Get "css/markdown.css") | resources.Concat "css/styles.css" | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" href="{{ "index.xml" | relURL }}">
+
+    <!-- JSON-LD Structured Data -->
+    {{ if .IsPage }}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": {{ .Title }},
+      "description": {{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }},
+      "url": {{ .Permalink }},
+      "datePublished": {{ .Date.Format "2006-01-02T15:04:05Z07:00" }},
+      {{ with .Lastmod }}"dateModified": {{ .Format "2006-01-02T15:04:05Z07:00" }},{{ end }}
+      "author": {
+        "@type": "Person",
+        "name": {{ .Site.Title }}
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": {{ .Site.Title }}
+      },
+      "image": {{ $image | absURL }},
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": {{ .Permalink }}
+      }
+    }
+    </script>
+    {{ else }}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": {{ .Site.Title }},
+      "url": {{ .Site.BaseURL }},
+      "description": {{ .Site.Params.description }}
+    }
+    </script>
+    {{ end }}
+  </head>
+  <body>
+    <main>
+      {{ partial "header.html" . }}
+
+      <article>
         {{ block "main" . }}{{ end }}
+      </article>
     </main>
-</body>
+    {{ $script := resources.Get "js/sidenotes.js" | minify | fingerprint }}
+    <script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}"></script>
+  </body>
 </html>

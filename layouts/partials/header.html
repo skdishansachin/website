@@ -1,12 +1,13 @@
-<header class="header">
-    <div class="header__container">
-        <div class="header__inner">
-            <a href="{{ "/" | relURL }}" class="header__brand">skdishansachin</a>
-            <nav class="nav">
-                <a href="https://codeberg.org/skdishansachin" class="nav__link">codeberg</a>
-                <a href="https://github.com/skdishansachin" class="nav__link">github</a>
-                <a href="#" class="nav__link theme-toggle">dark</a>
-            </nav>
-        </div>
-    </div>
+<header class="site-header">
+  <span class="site-header__title">{{ .Site.Params.siteName }}</span>
+  <nav class="site-header__nav">
+    {{ range .Site.Menus.main }}
+      <a
+        href="{{ .URL }}"
+        {{ if eq $.RelPermalink .URL }}class="active"{{ end }}
+      >
+        {{ .Name }}
+      </a>
+    {{ end }}
+  </nav>
 </header>

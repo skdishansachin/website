@@ -4,7 +4,7 @@
     <link>{{ .Site.BaseURL }}</link>
     <description>{{ with .Site.Params.description }}{{ . }}{{ end }}</description>
     <generator>Hugo -- gohugo.io</generator>
-    {{ with .Site.LanguageCode }}<language>{{ . }}</language>{{ end }}
+    {{ with .Site.Language.Locale }}<language>{{ . }}</language>{{ end }}
     <atom:link href="{{ "index.xml" | absURL }}" rel="self" type="application/rss+xml"/>
     {{ range .Site.RegularPages }}
     <item>

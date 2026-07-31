@@ -1,221 +1,283 @@
-.md {
-  /* Base typography */
-  line-height: 1.7;
-  font-size: 1rem;
-  color: var(--color-text-primary, #333);
+:root {
+    --font-serif:
+        et-book, Palatino, "Palatino Linotype", "Palatino LT STD",
+        "Book Antiqua", Georgia, serif;
+    --font-num:
+        et-book-num, et-book, Palatino, "Palatino Linotype", "Palatino LT STD",
+        "Book Antiqua", Georgia, serif;
+    --font-mono: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
 
-  /* Headings */
-  h1, h2, h3, h4, h5, h6 {
-    margin-top: 2em;
-    margin-bottom: 0.5em;
-    font-weight: 600;
-    line-height: 1.25;
-    text-wrap: balance;
-  }
+h1 {
+    font-weight: 400;
+    margin-top: 4rem;
+    margin-bottom: 1.5rem;
+    font-size: 3.2rem;
+    line-height: 1;
+}
 
-  h1 {
-    font-size: 2em;
-    margin-top: 0;
-    padding-bottom: 0.3em;
-    border-bottom: 1px solid var(--color-border, #ddd);
-  }
+h2 {
+    font-style: italic;
+    font-weight: 400;
+    margin-top: 2.1rem;
+    margin-bottom: 1.4rem;
+    font-size: 2.2rem;
+    line-height: 1;
+}
 
-  h2 {
-    font-size: 1.5em;
-    padding-bottom: 0.25em;
-    border-bottom: 1px solid var(--color-border, #ddd);
-  }
+h3 {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.7rem;
+    margin-top: 2rem;
+    margin-bottom: 1.4rem;
+    line-height: 1;
+}
 
-  h3 { font-size: 1.25em; }
-  h4 { font-size: 1.1em; }
-  h5 { font-size: 1em; }
-  h6 { font-size: 0.95em; color: var(--color-text-secondary, #666); }
+p,
+dl,
+ol,
+ul,
+summary {
+    font-size: 1.4rem;
+    line-height: 2rem;
+}
 
-  /* Paragraphs */
-  p {
-    margin-top: 0;
-    margin-bottom: 1.25em;
-  }
-
-  /* Links */
-  a {
-    color: var(--color-link, #4a90e2);
-    text-decoration-color: var(--color-link, #4a90e2);
-    text-underline-offset: 3px;
-  }
-
-  a:hover {
-    color: var(--color-link-hover, #6aa3e8);
-    text-decoration-color: var(--color-link-hover, #6aa3e8);
-  }
-
-  /* Strong & Em */
-  b, strong {
-    font-weight: 600;
-  }
-
-  /* Lists */
-  ul, ol {
-    margin-top: 0;
-    margin-bottom: 1.25em;
-    padding-left: 2em;
-  }
-
-  li {
-    margin-bottom: 0.25em;
-  }
-
-  li > ul,
-  li > ol {
-    margin-top: 0.25em;
-    margin-bottom: 0;
-  }
-
-  /* Task lists */
-  input[type="checkbox"] {
-    margin-right: 0.5em;
-    vertical-align: middle;
-  }
-
-  /* Blockquotes */
-  blockquote {
-    margin: 0 0 1.25em 0;
-    padding: 0.5em 1em;
-    color: var(--color-text-secondary, #666);
-    border-left: 3px solid var(--color-link, #4a90e2);
-    background-color: color-mix(in srgb, var(--color-bg-primary, #fff) 60%, transparent);
-
-    p:last-child {
-      margin-bottom: 0;
-    }
-
-    > :first-child {
-      margin-top: 0;
-    }
-  }
-
-  /* Code - inline */
-  code {
-    padding: 0.15em 0.4em;
-    font-size: 0.9em;
-    font-family: var(--font-family-mono, monospace);
-    background-color: var(--color-code-bg, #fffce3);
-    border: 1px solid var(--color-code-border, #e9e9e5);
-    border-radius: 4px;
-    color: var(--color-code-text, #000);
-  }
-
-  /* Code - blocks */
-  pre {
-    margin: 0 0 1.25em 0;
-    padding: 1em;
-    overflow-x: auto;
-    font-size: 0.85em;
-    line-height: 1.5;
-    border-radius: 6px;
-
-    code {
-      padding: 0;
-      margin: 0;
-      font-size: inherit;
-      background: none;
-      border: none;
-      border-radius: 0;
-      color: inherit;
-    }
-  }
-
-  /* Tables */
-  table {
-    display: block;
-    width: 100%;
-    margin: 0 0 1.25em 0;
-    padding: 0;
-    font-size: 0.95em;
-    overflow-x: auto;
-    border-spacing: 0;
-    border-collapse: collapse;
-  }
-
-  thead {
-    th {
-      padding: 0.5em 1em;
-      font-weight: 600;
-      text-align: left;
-      border-bottom: 2px solid var(--color-border, #ddd);
-    }
-  }
-
-  tbody {
-    td {
-      padding: 0.5em 1em;
-      border-bottom: 1px solid var(--color-border, #ddd);
-    }
-
-    tr:nth-child(2n) {
-      background-color: color-mix(in srgb, var(--color-bg-primary, #fff) 90%, var(--color-text-secondary, #666));
-    }
-
-    tr:last-child td {
-      border-bottom: none;
-    }
-  }
-
-  /* Images */
-  img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 4px;
-  }
-
-  /* Horizontal rule */
-  hr {
-    margin: 2em 0;
-    padding: 0;
-    border: none;
-    height: 1px;
-    background-color: var(--color-border, #ddd);
-  }
-
-  /* Definition lists */
-  dl {
-    margin: 0 0 1.25em 0;
-  }
-
-  dt {
-    font-weight: 600;
-    margin-top: 1em;
-  }
-
-  dd {
-    margin-left: 1em;
-    margin-bottom: 0.5em;
-  }
-
-  /* Mark */
-  mark {
-    padding: 0.1em 0.3em;
-    background-color: color-mix(in srgb, var(--color-link, #4a90e2) 20%, transparent);
-    border-radius: 2px;
-  }
-
-  /* Sub & Sup */
-  sub, sup {
-    font-size: 75%;
-    line-height: 0;
-    position: relative;
+p {
+    margin-top: 1.4rem;
+    margin-bottom: 1.4rem;
+    padding-right: 0;
     vertical-align: baseline;
-  }
+}
 
-  sub { bottom: -0.25em; }
-  sup { top: -0.5em; }
+dt:not(:first-child),
+li:not(:first-child) {
+    margin-top: 0.25rem;
+}
 
-  /* First/last child margin reset */
-  > :first-child {
-    margin-top: 0 !important;
-  }
+a:link,
+a:visited {
+    color: inherit;
+    text-underline-offset: 0.1em;
+    text-decoration-thickness: 0.05em;
+}
 
-  > :last-child {
-    margin-bottom: 0 !important;
-  }
+hr {
+    display: block;
+    height: 1px;
+    width: var(--section-width);
+    border: 0;
+    border-top: 1px solid var(--hr);
+    margin: 1em 0;
+    padding: 0;
+}
+
+pre {
+    overflow-x: scroll;
+    font-size: 1.1rem;
+}
+
+code {
+    font-family: var(--font-mono);
+}
+
+p > code,
+p > a > code,
+li > code,
+li > a > code {
+    font-size: 1.2rem;
+}
+
+.sans > code {
+    font-size: 1.2rem;
+}
+
+h1 > code,
+h2 > code,
+h3 > code {
+    font-size: 0.8em;
+}
+
+.highlight {
+    overflow-x: auto;
+    border-radius: 0.5rem;
+}
+
+.highlight > pre {
+    width: 100%;
+    margin: 0;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+}
+
+blockquote {
+    font-size: 1.4rem;
+    margin: 1.4rem 2.6rem;
+}
+
+blockquote p {
+    width: var(--section-width);
+    margin-right: 40px;
+}
+
+blockquote footer,
+.quotecite {
+    width: var(--section-width);
+    font-size: 1.1rem;
+    text-align: right;
+}
+
+.epigraph {
+    margin: 5em 0;
+}
+
+.epigraph > blockquote {
+    margin-top: 3em;
+    margin-bottom: 3em;
+}
+
+.epigraph > blockquote,
+.epigraph > blockquote > p,
+blockquote > .epigraph {
+    font-style: italic;
+}
+
+.epigraph > blockquote > footer {
+    font-style: normal;
+}
+
+.epigraph > blockquote > footer > cite {
+    font-style: italic;
+}
+
+figure {
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    max-width: var(--section-width);
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
+    margin: 0 0 3em 0;
+}
+
+figcaption {
+    float: right;
+    clear: right;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    vertical-align: baseline;
+    position: relative;
+    max-width: 50%;
+}
+
+figure.fullwidth figcaption {
+    margin-right: 24%;
+}
+
+img,
+video {
+    max-width: 100%;
+}
+
+img,
+pre,
+video {
+    border-radius: 0.5rem;
+}
+
+img.responsive {
+    width: auto;
+    height: auto;
+}
+
+table {
+    width: 100%;
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: 1.2rem;
+}
+
+table th,
+table td {
+    padding: 0.7rem 0.85rem;
+    vertical-align: top;
+}
+
+table th {
+    text-align: left;
+    font-style: italic;
+    border-bottom: 2px solid #3c3c3c;
+}
+
+table.fullwidth,
+.fullwidth + table {
+    width: 100%;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    font-family: "Trebuchet MS", "Gill Sans", "Gill Sans MT", sans-serif;
+}
+
+details {
+    margin-block: 0.5rem;
+    border: 1px solid var(--details-border);
+    border-radius: 0.5rem;
+    padding: 0.3rem 1rem;
+}
+
+details summary {
+    user-select: none;
+}
+
+.subtitle {
+    font-style: italic;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    display: block;
+    line-height: 1;
+}
+
+.numeral {
+    font-family: var(--font-num);
+}
+
+.danger {
+    color: red;
+}
+
+.newthought {
+    font-variant: small-caps;
+    font-size: 1.2em;
+}
+
+.sans {
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+    letter-spacing: 0.03em;
+}
+
+.katex-display {
+    overflow-x: scroll;
+}
+
+.iframe-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 25px;
+    height: 0;
+}
+
+.iframe-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }

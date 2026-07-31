@@ -1,18 +1,29 @@
 {{ define "main" }}
-<div class="posts-list">
-    {{ range .Paginator.Pages }}
-        {{ if not .Params.series }}
-        <a href="{{ .RelPermalink }}" class="posts-list__item">
-            <span class="posts-list__title">{{ .Title }}</span>
-            <b class="posts-list__date">{{ .Date.Format "Jan 02 2006" }}</b>
-        </a>
-        {{ end }}
-    {{ end }}
-    {{ range .Site.Taxonomies.series }}
-    <a href="{{ .Page.RelPermalink }}" class="posts-list__item">
-        <span class="posts-list__title">{{ .Page.Title }}</span>
-        <b class="posts-list__date">{{ len .Pages }} articles</b>
-    </a>
-    {{ end }}
-</div>
+{{ .Content }}
+
+{{ $blog := where .Site.RegularPages "Section" "blog" }}
+{{ if $blog }}
+<h2>Recent Posts</h2>
+
+<ul class="blog-list">
+  {{ range first 5 (sort $blog ".Date" "desc") }}
+    <li class="blog-list__item">
+      <a href="{{ .Permalink }}" class="blog-list__link">
+        <h3 class="blog-list__title">{{ .Title }}</h3>
+        <span class="blog-list__meta">
+          {{ with .Date }}
+            <span class="blog-list__meta-item">
+              <time datetime="{{ .Format "2006-01-02" }}">
+                {{ .Format "2 Jan 2006" }}
+              </time>
+            </span>
+          {{ end }}
+        </span>
+      </a>
+    </li>
+  {{ end }}
+</ul>
+
+<p>View all posts at <a href="/blog/">Blog</a></p>
+{{ end }}
 {{ end }}

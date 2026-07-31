@@ -1,58 +1,19 @@
 {{ define "main" }}
-<article class="post">
-    <header class="post__header">
-        <h1 class="post__title">{{ .Title }}</h1>
-        <div class="post__meta">{{ .Date.Format "Jan 02, 2006" }}</div>
-        {{ with .GetTerms "series" }}
-        {{ $term := index . 0 }}
-        <div class="post__series">
-            Part of series: <a href="{{ $term.RelPermalink }}">{{ $term.Title }}</a>
-        </div>
-        {{ end }}
-    </header>
-    <div class="md">
-        {{ .Content }}
-    </div>
-    <nav class="post__nav">
-        {{ if .Params.series }}
-            {{ $seriesPages := .GetTerms "series" }}
-            {{ with index $seriesPages 0 }}
-                {{ $term := . }}
-                {{ $pages := $term.Pages.ByDate }}
-                {{ $len := len $pages }}
-                {{ $prev := false }}
-                {{ $next := false }}
-                {{ range $index, $page := $pages }}
-                    {{ if eq $page.RelPermalink $.RelPermalink }}
-                        {{ if gt $index 0 }}
-                            {{ $prev = index $pages (sub $index 1) }}
-                        {{ end }}
-                        {{ if lt (add $index 1) $len }}
-                            {{ $next = index $pages (add $index 1) }}
-                        {{ end }}
-                    {{ end }}
-                {{ end }}
-                {{ if $prev }}
-                <div class="post__nav-item post__nav-item--prev">
-                    <span class="post__nav-label">Previous</span>
-                    <a href="{{ $prev.RelPermalink }}" class="post__nav-title">{{ $prev.Title }}</a>
-                </div>
-                {{ end }}
-                {{ if $next }}
-                <div class="post__nav-item post__nav-item--next">
-                    <span class="post__nav-label">Next</span>
-                    <a href="{{ $next.RelPermalink }}" class="post__nav-title">{{ $next.Title }}</a>
-                </div>
-                {{ end }}
-            {{ end }}
-        {{ else }}
-            {{ if .Prev }}
-            <div class="post__nav-item post__nav-item--prev">
-                <span class="post__nav-label">Previous</span>
-                <a href="{{ .Prev.RelPermalink }}" class="post__nav-title">{{ .Prev.Title }}</a>
-            </div>
-            {{ end }}
-        {{ end }}
-    </nav>
-</article>
+<h1>{{ .Title }}</h1>
+<p class="subtitle post-meta">
+  {{ with .Params.author }}
+    <span class="post-meta__author">
+      by <span class="post-meta__name">{{ . }}</span>
+    </span>
+  {{ end }}
+  {{ with .Date }}
+    <span class="post-meta__date">
+      <time datetime="{{ .Format "2006-01-02" }}">
+        {{ .Format "2 Jan 2006" }}
+      </time>
+    </span>
+  {{ end }}
+</p>
+
+{{ .Content }}
 {{ end }}
