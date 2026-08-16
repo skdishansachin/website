@@ -4,7 +4,8 @@ title = 'S.K. DISHAN SACHIN'
 
 [params]
   author = 'S.K. Dishan Sachin'
+  description = 'S.K. Dishan Sachin — writing about compilers, parsers, and language design.'
 
 [markup]
   [markup.highlight]
-    style = 'github-dark'
+    style = 'bw'

@@ -1,0 +1,11 @@
+{{ define "main" }}
+<article>
+  <h1>{{ .Title }}</h1>
+  <div>
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format ($.Site.Params.dateFormat | default "2006-01-02") }}</time>
+    · {{ $.Site.Params.author }}
+  </div>
+  {{ .Content }}
+</article>
+<hr \>
+{{ end }}
