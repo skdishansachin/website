@@ -1,6 +1,6 @@
 # Website
 
-This is my personal website and blog, built with [Hugo](https://gohugo.io/).
+This is my personal website and blog, built with HTML, CSS.
 
 ## License
 
