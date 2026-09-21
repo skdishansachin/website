@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}{{ config.title }}{% endblock title %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Blog","name":"{{ config.title }}","url":"{{ config.base_url | safe }}","description":"{{ config.description }}","inLanguage":"en"}
+</script>
+{% endblock structured_data %}
+
+{% block content %}
+<header class="site-header">
+  <h1 class="site-header__title">{{config.title}}</h1>
+
+  <nav class="site-header__nav" aria-label="Social links">
+    <ul class="social__list">
+      <li class="social__item"><a href="https://github.com/skdishansachin" rel="me author noopener" target="_blank">github</a></li>
+      <li class="social__item"><a href="https://codeberg.org/skdishansachin" rel="me author noopener" target="_blank">codeberg</a></li>
+      <li class="social__item"><a href="mailto:hello@skdishansachin.com" rel="me author">email</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="page__main" id="main-content">
+  <section class="projects" aria-labelledby="projects-heading">
+    <h2 class="projects__title" id="projects-heading">projects</h2>
+
+    <ul class="projects__list">
+      <li class="projects__item"><a href="https://codeberg.org/ziglang/zig" rel="me noopener" target="_blank">ziglang/zig</a></li>
+    </ul>
+  </section>
+
+  <section class="writeups" aria-labelledby="writeups-heading">
+    <h2 class="writeups__title" id="writeups-heading">writeups</h2>
+
+    <ul class="writeups__list">
+    {%- set posts = get_section(path="posts/_index.md") -%}
+    {%- for post in posts.pages | sort(attribute="date") | reverse %}
+      <li class="writeups__item"><a href="{{ post.permalink | safe }}">{{ post.title }}</a> <time class="writeups__date" datetime="{{ post.date | date(format="%Y-%m-%d") }}">{{ post.date | date(format="%Y-%m-%d") }}</time></li>
+    {%- endfor %}
+    </ul>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p class="site-footer__text">&copy; 2026 {{config.title}}</p>
+</footer>
+{% endblock content %}

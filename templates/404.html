@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Page not found - {{ config.title }}{% endblock title %}
+{% block twitter_title %}Page not found - {{ config.title }}{% endblock twitter_title %}
+
+{% block content %}
+<header class="site-header site-header--compact">
+  <p class="site-header__title">{{config.title}}</p>
+</header>
+
+<main class="page__main" id="main-content">
+  <article class="post">
+    <header class="post__header">
+      <h1 class="post__title">Page not found</h1>
+    </header>
+
+    <div class="post__content">
+      <p>That address does not exist on this site.</p>
+      <p><a href="/" rel="home">← back to home</a></p>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <p class="site-footer__text">&copy; 2026 {{config.title}}</p>
+</footer>
+{% endblock content %}

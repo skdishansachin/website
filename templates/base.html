@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{%- set desc = config.description -%}
+{%- if page and page.description -%}
+  {%- set desc = page.description -%}
+{%- elif section and section.description -%}
+  {%- set desc = section.description -%}
+{%- endif -%}
+{%- set canonical = config.base_url -%}
+{%- if current_url -%}
+  {%- set canonical = current_url -%}
+{%- endif -%}
+<title>{% block title %}{{ config.title }}{% endblock title %}</title>
+<meta name="description" content="{{ desc }}">
+<link rel="canonical" href="{{ canonical | safe }}">
+<meta name="robots" content="index, follow">
+<meta name="author" content="{{ config.author }}">
+<meta name="generator" content="Zola">
+<meta name="theme-color" content="oklch(0.985 0.0082 91.48)">
+<meta name="color-scheme" content="light">
+<link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+<link rel="alternate" type="application/atom+xml" title="{{ config.title }} Atom feed" href="/atom.xml">
+{% block opengraph %}
+<meta property="og:site_name" content="{{ config.title }}">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ config.title }}">
+<meta property="og:description" content="{{ desc }}">
+<meta property="og:url" content="{{ canonical | safe }}">
+{% endblock opengraph %}
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{% block twitter_title %}{{ config.title }}{% endblock twitter_title %}">
+<meta name="twitter:description" content="{{ desc }}">
+{% block structured_data %}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"{{ config.title }}","url":"{{ config.base_url | safe }}","description":"{{ desc }}","inLanguage":"en"}
+</script>
+{% endblock structured_data %}
+{% block head_extra %}{% endblock head_extra %}
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+{% block content %}{% endblock content %}
+</body>
+</html>
